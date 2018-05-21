@@ -1,6 +1,7 @@
 package com.practice_android01.prasannaboga.practice_android01;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
 import java.util.List;
@@ -15,8 +16,8 @@ public class HeaderRecyclerViewSection extends StatelessSection {
 
     public HeaderRecyclerViewSection(String title, List<ItemObject> list) {
         super(SectionParameters.builder()
-                .itemResourceId(R.layout.transcation_header)
-                .headerResourceId(R.layout.transcation_item)
+                .itemResourceId(R.layout.transcation_item)
+                .headerResourceId(R.layout.transcation_header)
                 .build());
         this.title = title;
         this.list = list;

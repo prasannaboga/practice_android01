@@ -8,6 +8,6 @@ public class ItemViewHolder extends RecyclerView.ViewHolder{
     public TextView itemContent;
     public ItemViewHolder(View itemView) {
         super(itemView);
-        itemContent = (TextView)itemView.findViewById(R.id.item_content);
+        itemContent = itemView.findViewById(R.id.item_content);
     }
 }

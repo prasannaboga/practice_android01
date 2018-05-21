@@ -8,10 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.github.luizgrp.sectionedrecyclerviewadapter.SectionParameters;
 import io.github.luizgrp.sectionedrecyclerviewadapter.SectionedRecyclerViewAdapter;
-import io.github.luizgrp.sectionedrecyclerviewadapter.StatelessSection;
-
 
 public class FiveActivity extends AppCompatActivity {
 
@@ -24,9 +21,20 @@ public class FiveActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_five);
 
+        sectionHeader = (RecyclerView)findViewById(R.id.testRecyclerView);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(FiveActivity.this);
+        sectionHeader.setLayoutManager(linearLayoutManager);
+        sectionHeader.setHasFixedSize(true);
+
+        HeaderRecyclerViewSection firstSection = new HeaderRecyclerViewSection("2018-05-18", getDataSource());
+        HeaderRecyclerViewSection secondSection = new HeaderRecyclerViewSection("2018-05-19", getDataSource());
+        HeaderRecyclerViewSection thirdSection = new HeaderRecyclerViewSection("2018-05-20", getDataSource());
+
         sectionAdapter = new SectionedRecyclerViewAdapter();
-
-
+        sectionAdapter.addSection(firstSection);
+        sectionAdapter.addSection(secondSection);
+        sectionAdapter.addSection(thirdSection);
+        sectionHeader.setAdapter(sectionAdapter);
     }
 
     private List<ItemObject> getDataSource(){
