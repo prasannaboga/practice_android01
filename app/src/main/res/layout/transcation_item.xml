@@ -13,15 +13,48 @@
         card_view:cardElevation="0dp"
         card_view:cardUseCompatPadding="true">
 
-        <TextView
-            android:id="@+id/transactionId"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:padding="18dp"
-            android:text="Transcation ID"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="16sp" />
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/transactionId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="18dp"
+                android:text="Transcation ID"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/createdAt"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/transactionId"
+                android:padding="18dp"
+                android:gravity="center"
+                android:text="createdAt" />
+
+            <TextView
+                android:id="@+id/amount"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="amount" />
+
+            <TextView
+                android:id="@+id/status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="18dp"
+                android:text="status"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="16sp" />
+        </LinearLayout>
+
 
     </android.support.v7.widget.CardView>
 </LinearLayout>

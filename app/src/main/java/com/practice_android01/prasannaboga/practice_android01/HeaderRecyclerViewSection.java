@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.View;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.List;
@@ -38,7 +39,16 @@ public class HeaderRecyclerViewSection extends StatelessSection {
     @Override
     public void onBindItemViewHolder(RecyclerView.ViewHolder holder, int position) {
         ItemViewHolder iHolder = (ItemViewHolder) holder;
-        iHolder.transactionId.setText(list.getClass().toString());
+        try {
+            JSONObject item = list.getJSONObject(position);
+            iHolder.transactionId.setText(item.getString("transaction_id"));
+            iHolder.amount.setText(item.getString("amount"));
+            iHolder.createdAt.setText(item.getString("createdAt"));
+            iHolder.status.setText(item.getString("status"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override
