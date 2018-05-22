@@ -1,19 +1,21 @@
 package com.practice_android01.prasannaboga.practice_android01;
 
-public class TransactionDetails {
-    public String transaction_id;
-    public String created_at;
-    public String amount;
-    public String status;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-    public TransactionDetails(String transaction_id, String created_at, String amount, String status) {
-        this.transaction_id = transaction_id;
-        this.created_at = created_at;
-        this.amount = amount;
-        this.status = status;
+public class TransactionDetails {
+    public JSONObject transactionDetails;
+
+    public TransactionDetails(JSONObject transactionDetails) {
+        this.transactionDetails = transactionDetails;
     }
 
-    public String getContents() {
-        return transaction_id;
+    public String transactionID() {
+        String transactionID = new String();
+        try {
+            transactionID = transactionDetails.getString("transaction_id");
+        } catch (JSONException e) {
+        }
+        return transactionID;
     }
 }

@@ -1,13 +1,10 @@
 package com.practice_android01.prasannaboga.practice_android01;
 
 public class ItemObject {
-    private String contents;
+    public String transactionId;
 
-    public ItemObject(String contents) {
-        this.contents = contents;
+    public ItemObject(String transactionId) {
+        this.transactionId = transactionId;
     }
 
-    public String getContents() {
-        return contents;
-    }
 }

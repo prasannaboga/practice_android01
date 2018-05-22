@@ -18,6 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Date;
@@ -41,7 +42,7 @@ public class FiveActivity extends AppCompatActivity {
         sectionHeader.setLayoutManager(linearLayoutManager);
         sectionHeader.setHasFixedSize(true);
 
-        InputStream inputStream = getResources().openRawResource(R.raw.mock_transaction_data);
+        InputStream inputStream = getResources().openRawResource(R.raw.mock_transaction_by_data);
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         int ctr;
         try {
@@ -58,38 +59,18 @@ public class FiveActivity extends AppCompatActivity {
         sectionAdapter = new SectionedRecyclerViewAdapter();
 
         try {
-            JSONArray transactions = new JSONArray(byteArrayOutputStream.toString());
+            JSONObject transactionsByDate = new JSONObject(byteArrayOutputStream.toString());
 
-            Map<String, List<TransactionDetails>> transactionsGroupByDate = new HashMap<>();
+            Iterator<?> transactionDates = transactionsByDate.keys();
 
-            for (int i = 0; i < transactions.length(); i++) {
-                JSONObject transactionDetail = transactions.getJSONObject(i);
-
-                SimpleDateFormat formatInputDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
-                Date createdAtDateObject = formatInputDate.parse(transactionDetail.getString("created_at"));
-                SimpleDateFormat formatOutputDate = new SimpleDateFormat("dd-MMM-YYYY");
-                String createdAt = formatOutputDate.format(createdAtDateObject);
-
-                if (transactionsGroupByDate.get("createdAt") != null) {
-                    transactionsGroupByDate.get("createdAt").add(new TransactionDetails(transactionDetail.getString("transaction_id"),
-                            transactionDetail.getString("created_at"), transactionDetail.getString("amount"), transactionDetail.getString("status")));
-                } else {
-                    transactionsGroupByDate.put(createdAt, new ArrayList<TransactionDetails>());
-                }
-            }
-
-            ArrayList<String> sortedByCreatedAt = new ArrayList<>(transactionsGroupByDate.keySet());
-            Collections.sort(sortedByCreatedAt);
-
-            for (String createdAt : sortedByCreatedAt) {
-                HeaderRecyclerViewSection sectionByDate = new HeaderRecyclerViewSection(createdAt, transactionsGroupByDate.get("createdAt"));
+            while (transactionDates.hasNext()) {
+                String key = (String) transactionDates.next();
+                JSONArray transactionOnDate = (JSONArray) transactionsByDate.get(key);
+                HeaderRecyclerViewSection sectionByDate = new HeaderRecyclerViewSection(key, transactionOnDate);
                 sectionAdapter.addSection(sectionByDate);
             }
 
-
         } catch (JSONException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
             e.printStackTrace();
         }
 

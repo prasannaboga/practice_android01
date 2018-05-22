@@ -4,6 +4,9 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.List;
 
 import io.github.luizgrp.sectionedrecyclerviewadapter.SectionParameters;
@@ -11,9 +14,9 @@ import io.github.luizgrp.sectionedrecyclerviewadapter.StatelessSection;
 
 public class HeaderRecyclerViewSection extends StatelessSection {
     private String title;
-    private List<TransactionDetails> list;
+    private JSONArray list;
 
-    public HeaderRecyclerViewSection(String title, List<TransactionDetails> list) {
+    public HeaderRecyclerViewSection(String title, JSONArray list) {
         super(SectionParameters.builder()
                 .itemResourceId(R.layout.transcation_item)
                 .headerResourceId(R.layout.transcation_header)
@@ -24,7 +27,7 @@ public class HeaderRecyclerViewSection extends StatelessSection {
 
     @Override
     public int getContentItemsTotal() {
-        return list.size();
+        return list.length();
     }
 
     @Override
@@ -35,7 +38,7 @@ public class HeaderRecyclerViewSection extends StatelessSection {
     @Override
     public void onBindItemViewHolder(RecyclerView.ViewHolder holder, int position) {
         ItemViewHolder iHolder = (ItemViewHolder) holder;
-        iHolder.transactionId.setText(list.get(position).transaction_id);
+        iHolder.transactionId.setText(list.getClass().toString());
     }
 
     @Override
