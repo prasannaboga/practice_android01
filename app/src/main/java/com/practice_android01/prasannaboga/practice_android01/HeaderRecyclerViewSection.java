@@ -10,11 +10,10 @@ import io.github.luizgrp.sectionedrecyclerviewadapter.SectionParameters;
 import io.github.luizgrp.sectionedrecyclerviewadapter.StatelessSection;
 
 public class HeaderRecyclerViewSection extends StatelessSection {
-    private static final String TAG = HeaderRecyclerViewSection.class.getSimpleName();
     private String title;
-    private List<ItemObject> list;
+    private List<TransactionDetails> list;
 
-    public HeaderRecyclerViewSection(String title, List<ItemObject> list) {
+    public HeaderRecyclerViewSection(String title, List<TransactionDetails> list) {
         super(SectionParameters.builder()
                 .itemResourceId(R.layout.transcation_item)
                 .headerResourceId(R.layout.transcation_header)
@@ -36,7 +35,7 @@ public class HeaderRecyclerViewSection extends StatelessSection {
     @Override
     public void onBindItemViewHolder(RecyclerView.ViewHolder holder, int position) {
         ItemViewHolder iHolder = (ItemViewHolder) holder;
-        iHolder.itemContent.setText(list.get(position).getContents());
+        iHolder.transactionId.setText(list.get(position).transaction_id);
     }
 
     @Override
