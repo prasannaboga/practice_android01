@@ -9,19 +9,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".SecondActivity" />
+        <activity android:name=".ThreeActivity" />
+        <activity android:name=".FourActivity" />
+        <activity android:name=".FiveActivity"></activity>
+        <activity
+            android:name=".SliderNavActivity"
+            android:label="@string/title_activity_slider_nav"
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SecondActivity" />
-        <activity android:name=".ThreeActivity"></activity>
-        <activity android:name=".FourActivity"></activity>
-        <activity android:name=".FiveActivity">
-
-        </activity>
     </application>
-
 </manifest>
